@@ -20,7 +20,7 @@ def generate_password(
         characters += string.punctuation
 
     if not characters:
-        raise ValueError("Quitaste caracteres")
+        raise ValueError("no characters")
 
     password = "".join(random.choice(characters) for _ in range(length))
     return password
@@ -31,19 +31,19 @@ def main():
         try:
             length = int(input("Lenght: "))
             if length <= 0:
-                print("solo numeros enteros")
+                print("only numbers")
                 continue
             break
         except ValueError:
-            print("numero invalido")
+            print("invalid number")
 
     include_symbols = (
-        input("symbols? (si/no):  ").strip().lower()
+        input("symbols? (yes/no):  ").strip().lower()
     )
-    while include_symbols not in ("si", "no"):
-        print("responde si o no >:(")
+    while include_symbols not in ("yes", "no"):
+        print(" yes or no! >:(")
         include_symbols = (
-            input("symbols? (si/no): ").strip().lower()
+            input("symbols? (yes/no): ").strip().lower()
         )
 
     try:
@@ -51,7 +51,7 @@ def main():
             length=length,
             include_symbols=include_symbols == "si",
         )
-        print(f"Contraseña generada: {password}")
+        print(f"generated password: {password}")
     except ValueError as e:
         print(f"Error: {e}")
 
